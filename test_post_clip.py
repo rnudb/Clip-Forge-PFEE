@@ -226,41 +226,54 @@ def get_true_voxels(test_dataloader, args):
     voxel_array = np.concatenate(voxel_array)    
     return voxel_array
 
+# def voxel_save(voxels, text_name, out_file=None, transpose=True, show=False):
+
+#     # Use numpy
+#     voxels = np.asarray(voxels)
+#     # Create plot
+#     #fig = plt.figure()
+#     fig = plt.figure(figsize=(40,20))
+    
+#     ax = fig.add_subplot(111, projection=Axes3D.name)
+#     if transpose == True:
+#         voxels = voxels.transpose(2, 0, 1)
+#     #else:
+#         #voxels = voxels.transpose(2, 0, 1)
+    
+
+#     ax.voxels(voxels, edgecolor='k', facecolors='coral', linewidth=0.5)
+#     ax.set_xlabel('Z')
+#     ax.set_ylabel('X')
+#     ax.set_zlabel('Y')
+#     # Hide grid lines
+#     plt.grid(False)
+#     plt.axis('off')
+    
+#     if text_name != None:
+#         plt.title(text_name, {'fontsize':30}, y=0.15)
+#     #plt.text(15, -0.01, "Correlation Graph between Citation & Favorite Count")
+
+#     ax.view_init(elev=30, azim=45)
+
+#     if out_file is not None:
+#         plt.axis('off')
+#         plt.savefig(out_file)
+#     if show:
+#         plt.show()
+#     plt.close(fig)
+
 def voxel_save(voxels, text_name, out_file=None, transpose=True, show=False):
+    # save voxel array as obj file current format is voxel[X,Y,Z]
+    import pickle
 
     # Use numpy
     voxels = np.asarray(voxels)
-    # Create plot
-    #fig = plt.figure()
-    fig = plt.figure(figsize=(40,20))
-    
-    ax = fig.add_subplot(111, projection=Axes3D.name)
-    if transpose == True:
-        voxels = voxels.transpose(2, 0, 1)
-    #else:
-        #voxels = voxels.transpose(2, 0, 1)
-    
 
-    ax.voxels(voxels, edgecolor='k', facecolors='coral', linewidth=0.5)
-    ax.set_xlabel('Z')
-    ax.set_ylabel('X')
-    ax.set_zlabel('Y')
-    # Hide grid lines
-    plt.grid(False)
-    plt.axis('off')
-    
-    if text_name != None:
-        plt.title(text_name, {'fontsize':30}, y=0.15)
-    #plt.text(15, -0.01, "Correlation Graph between Citation & Favorite Count")
+    # Save to obj file
+    out_file = "./voxels_" + text_name + ".obj"
+    with open(out_file, 'w') as f:
+        pickle.dump(voxels, f)
 
-    ax.view_init(elev=30, azim=45)
-
-    if out_file is not None:
-        plt.axis('off')
-        plt.savefig(out_file)
-    if show:
-        plt.show()
-    plt.close(fig)
 
 def save_voxel_images(net, latent_flow_model, clip_model, args, total_text_query, save_path, resolution=64, num_figs_per_query=5):
     net.eval()
