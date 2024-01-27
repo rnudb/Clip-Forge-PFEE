@@ -19,12 +19,12 @@ import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 
 
-from utils import helper
-from utils import visualization
+from .utils import helper
+from .utils import visualization
 
-from networks import autoencoder
+from .networks import autoencoder
 
-from dataset import shapenet_dataset
+from .dataset import shapenet_dataset
 ###################################### Experiment Utils########################################################
 
 

@@ -15,14 +15,14 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 
 
-from utils import helper
-from utils import visualization
-from utils import experimenter
+from .utils import helper
+from .utils import visualization
+from .utils import experimenter
 
-from train_autoencoder import experiment_name, parsing
-from train_post_clip import get_dataloader, experiment_name2, get_condition_embeddings, get_local_parser, get_clip_model
-from dataset import shapenet_dataset
-from networks import autoencoder, latent_flows
+from .train_autoencoder import experiment_name, parsing
+from .train_post_clip import get_dataloader, experiment_name2, get_condition_embeddings, get_local_parser, get_clip_model
+from .dataset import shapenet_dataset
+from .networks import autoencoder, latent_flows
 
 import clip
 

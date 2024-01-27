@@ -19,11 +19,11 @@ import torch.nn.functional as F
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 
-from utils import helper
-from utils import visualization
-from dataset import shapenet_dataset
-from train_autoencoder import experiment_name, parsing
-from networks import autoencoder, latent_flows
+from .utils import helper
+from .utils import visualization
+from .dataset import shapenet_dataset
+from .train_autoencoder import experiment_name, parsing
+from .networks import autoencoder, latent_flows
 import clip
 
 ###################################### Experiment Utils########################################################
