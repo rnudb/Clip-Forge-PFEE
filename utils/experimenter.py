@@ -52,7 +52,7 @@ def hung_acc(y_true, y_predicted, cluster_number=None):
         cluster_number = (
             max(y_predicted.max(), y_true.max()) + 1
         )  # assume labels are 0-indexed
-    count_matrix = np.zeros((cluster_number, cluster_number), dtype=np.int64)
+    count_matrix = np.zeros((cluster_number, cluster_number), dtype=int64)
     for i in range(y_predicted.size):
         count_matrix[y_predicted[i], y_true[i]] += 1
 
