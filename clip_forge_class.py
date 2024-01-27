@@ -9,7 +9,7 @@ class ClipForge:
         self.current_path = current_path
 
         # Check that exps folder exists
-        if not os.path.exists("./exps"):
+        if not os.path.exists(current_path + "exps"):
             # Prepare exp data
             os.system("wget https://clip-forge-pretrained.s3.us-west-2.amazonaws.com/exps.zip")
             cmd = "unzip exps.zip -d " + current_path
@@ -26,13 +26,15 @@ class ClipForge:
 
         # Build final args
         args = self.args + [self.query_prefix] + queries
-        for arg in args:
+        for i in range(len(args)):
+            arg = args[i]
             if arg.startswith("\"./\""):
                 arg = arg[1:-1] # Remove quotes
                 arg = arg[1:] # Remove .
                 arg = os.path.join(self.current_path, arg) # Add current path
                 arg = "\"" + arg + "\"" # Add quotes
             print(arg, end=" ")
+            args[i] = arg
 
         # Run query
         main(args)
