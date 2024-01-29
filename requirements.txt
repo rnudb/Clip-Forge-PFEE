@@ -18,4 +18,5 @@ scikit-learn
 torch
 torchvision
 torchaudio
+seaborn
 git+https://github.com/openai/CLIP.git

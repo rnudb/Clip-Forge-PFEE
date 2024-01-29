@@ -270,8 +270,11 @@ def voxel_save(voxels, text_name, out_file=None, transpose=True, show=False):
     voxels = np.asarray(voxels)
 
     # Save to obj file
-    out_file = "./voxels_" + text_name + ".obj"
-    with open(out_file, 'w') as f:
+    text_name = text_name.replace(' ', '_')
+    text_name = text_name.translate(str.maketrans('', '', '"'))
+
+    out_file = "./voxels/" + text_name + ".obj"
+    with open(out_file, 'wb') as f:
         pickle.dump(voxels, f)
 
 
@@ -306,7 +309,7 @@ def save_voxel_images(net, latent_flow_model, clip_model, args, total_text_query
             voxel_num = 0
             for voxel_in in voxels_out:
                 out_file = os.path.join(save_path, text_in + "_" + str(voxel_num) + ".png")
-                voxel_save(voxel_in, None, out_file=out_file)
+                voxel_save(voxel_in, text_in, out_file=out_file)
                 voxel_num = voxel_num + 1
 
 
